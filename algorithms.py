@@ -112,7 +112,6 @@ def linear_regression_algo(X_train,X_test,y_train,y_test):
     preds = model.predict(X_test)
     MAE = metrics.mean_absolute_error(y_test, preds)
     MSE = metrics.mean_squared_error(y_test,preds)
-    print('calced')
     RMSE = np.sqrt(metrics.mean_squared_error(y_test,preds))
     st.write('Mean Absolute Error',MAE)
     st.write('Mean Square Error',MSE)
