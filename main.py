@@ -9,28 +9,39 @@ from sklearn.metrics import classification_report,confusion_matrix
 from algorithms import logistic_regression_algo,random_forest_algo,svm_algo,knn_algo,linear_regression_algo
 
 st.title('Welcome')
-st.write('Select your file type and then upload!')
+st.write('Select your file type and then upload! (Currently only accepting Excel or CSV)')
 
 def main():
     try:
         thedata,data_type = upload_data()
-        if data_type == 'Columns/rows':
+        if data_type == 'Excel' or 'CSV':
             X_col,y_col = get_correct_columns(thedata,type)
             if len(X_col) > 1:
                 X_train,X_test,y_train,y_test = get_data_arrays(thedata,X_col,y_col)
+
                 #try_algos(X_train,X_test,y_train,y_test)
                 algo_type = st.sidebar.selectbox('Are you doing classification or regression?', ['Classification','Regression'])
                 if algo_type == 'Classification':
-                    algo_list = ['Logistic Regresssion','Random Forest','Support Vector Machine','K Nearest Neighbors']
-                    algo = st.selectbox('Pick an algorithm to try', algo_list)
-                    if algo == algo_list[0]:
-                        logistic_regression_algo(X_train,X_test,y_train,y_test)
-                    elif algo == algo_list[1]:
-                        random_forest_algo(X_train,X_test,y_train,y_test)
-                    elif algo == algo_list[2]:
-                        svm_algo(X_train,X_test,y_train,y_test)
-                    elif algo == algo_list[3]:
-                        knn_algo(X_train,X_test,y_train,y_test)
+                    number_unique = pd.DataFrame(y_train).nunique()[0]
+                    if number_unique < 3:
+                        algo_list = ['Logistic Regresssion','Random Forest','Support Vector Machine','K Nearest Neighbors']
+                        algo = st.selectbox('Pick an algorithm to try', algo_list)
+                        if algo == algo_list[0]:
+                            logistic_regression_algo(X_train,X_test,y_train,y_test)
+                        elif algo == algo_list[1]:
+                            random_forest_algo(X_train,X_test,y_train,y_test)
+                        elif algo == algo_list[2]:
+                            svm_algo(X_train,X_test,y_train,y_test)
+                        elif algo == algo_list[3]:
+                            knn_algo(X_train,X_test,y_train,y_test)
+                    else:
+                        algo_list = ['Random Forest','Support Vector Machine','K Nearest Neighbors']
+                        if algo == algo_list[0]:
+                            random_forest_algo(X_train,X_test,y_train,y_test)
+                        elif algo == algo_list[1]:
+                            svm_algo(X_train,X_test,y_train,y_test)
+                        elif algo == algo_list[2]:
+                            knn_algo(X_train,X_test,y_train,y_test)
                 elif algo_type == 'Regression':
                     algo_list = ['Linear Regression']
                     algo = st.selectbox('Pick and algorithm to try',algo_list)
@@ -42,19 +53,24 @@ def main():
         pass
 
 def upload_data():
-    file_type = st.sidebar.selectbox('What type of data will you upload?', ['Image','Columns/rows'])
+    file_type = st.sidebar.selectbox('What type of data will you upload?', ['Excel','CSV'])
 
-    if file_type=='Columns/rows':
+    if file_type=='CSV':
         data = st.file_uploader('Upload file(s) here',type='csv')
         if data is None:
             return
         data = pd.read_csv(data)
         st.write(data)
-    elif file_type == 'Image':
-        data = st.file_uploader('Upload image(s) here',type=['png','jpg','jpeg'])
+    elif file_type == 'Excel':
+        data = st.file_uploader('Upload file(s) here',type='xlsx')
         if data is None:
             return
-        st.image(data)
+        data = pd.read_excel(data)
+    # elif file_type == 'Image':
+    #     data = st.file_uploader('Upload image(s) here',type=['png','jpg','jpeg'])
+    #     if data is None:
+    #         return
+    #     st.image(data)
     if data is not None:
         return data,file_type
 
