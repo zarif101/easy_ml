@@ -78,6 +78,7 @@ def svm_algo(X_train,X_test,y_train,y_test):
 
 def knn_algo(X_train,X_test,y_train,y_test):
     error_rate = []
+    neighbors = []
     print('asdasdeq')
     for i in range(1,40):
         model = KNeighborsClassifier(n_neighbors=i)
@@ -85,10 +86,22 @@ def knn_algo(X_train,X_test,y_train,y_test):
         preds = model.predict(X_test)
         print('predicted')
         error_rate.append(np.mean(preds != y_test))
+        neighbors.append(i)
     junk = []
     for i in range(1,40):
         junk.append(i)
         print('junked')
+
+    default_model = KNeighborsClassifier(n_neighbors=neighbors[error_rate.index(min(error_rate))])
+    default_model.fit(X_train,y_train)
+    default_preds = default_model.predict(X_test)
+    default_preds = model.predict(X_test)
+    default_classifcation_report = classification_report(y_test,default_preds)
+    default_confusion_matrix = confusion_matrix(y_test,default_preds)
+    print(neighbors[error_rate.index(min(error_rate))])
+    st.write('Classification report with {0} neighbors(lowest we could find): '.format(neighbors[error_rate.index(min(error_rate))]),default_classifcation_report)
+    st.write('Confusion matrix with {0} neighbors(lowest we could find): '.format(neighbors[error_rate.index(min(error_rate))]),default_confusion_matrix)
+
     ax = sns.lineplot(x=junk,y=error_rate)
     ax.set(xlabel='Number of Neighbors',ylabel='Error_rate')
     st.pyplot()
