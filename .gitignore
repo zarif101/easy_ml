@@ -2,3 +2,4 @@ streamed/**
 streamy/**
 __pycache__/**
 data.csv
+email_info.py
