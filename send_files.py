@@ -51,5 +51,6 @@ class Email():
                 server.sendmail(self.sender_email, self.receiver_email, text)
                 #print('sent!')
             except Exception as e:
+                pass
                 #print('couldnt send')
                 #print(e)
