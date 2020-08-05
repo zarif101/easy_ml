@@ -10,6 +10,7 @@ from sklearn.svm import SVC
 from sklearn.model_selection import GridSearchCV
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn import metrics
+import sys
 
 def logistic_regression_algo(X_train,X_test,y_train,y_test):
     ##print(y_train)
@@ -28,6 +29,7 @@ def logistic_regression_algo(X_train,X_test,y_train,y_test):
 def random_forest_algo(X_train,X_test,y_train,y_test):
     ##print('forest time baby')
     rfc = RandomForestClassifier(n_estimators=100)
+    sys.stdout(y_train)
     rfc.fit(X_train,y_train)
     preds = rfc.predict(X_test)
     type = st.selectbox('Do you want to use your own custom n_estimators/trees values or use the one that we think is best?',['Default','Custom'])
