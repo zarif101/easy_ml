@@ -84,7 +84,7 @@ def main():
 
 
                                 email = Email(sender_email,receiver_email,subject,message,model_name,model_path,sender_password)
-
+                                st.write('Sending email...')
                                 email.send_email()
 
                                 st.write('Your model has been emailed to you!')
