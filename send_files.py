@@ -34,6 +34,7 @@ class Email():
                 part['Content-Disposition'] = 'attachment; filename="%s"' % self.model_name
                 message.attach(part)
             except Exception as e:
+                pass
                 #print(type(message))
                 #print(message)
                 #print(e)
