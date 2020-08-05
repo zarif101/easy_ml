@@ -41,6 +41,7 @@ class Email():
 
         context = ssl.create_default_context()
         text = message.as_string()
+        st.write('Almost sent!')
         #print('ready to send!')
         with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
             #print('here we go!')
