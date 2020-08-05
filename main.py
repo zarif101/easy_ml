@@ -82,7 +82,6 @@ def main():
                                 model_name = 'send_model.pkl'
                                 st.write('Getting model')
                                 with open(model_path+model_name,'wb') as pick:
-
                                     pickle.dump(model,pick)
 
                                 st.write('Getting email')
