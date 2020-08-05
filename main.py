@@ -87,11 +87,8 @@ def main():
                                 st.write('Getting email')
                                 email = Email(sender_email,receiver_email,subject,message,model_name,model_path,sender_password)
                                 st.write('Sending email...')
-                                try:
-                                    email.send_email()
-                                except error as p:
-                                    st.write('ERROR SEND')
-                                    st.write(p)
+                                email.send_email()
+                                st.write('EMAIL SENT')
 
                                 st.write('Your model has been emailed to you!')
                             else:

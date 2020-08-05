@@ -20,7 +20,7 @@ class Email():
         self.sender_password = sender_password
 
     def send_email(self):
-        st.write('Lets go send')
+        st.write('ABOUT TO SEND')
         try:
             message = MIMEMultipart()
             message['From'] = self.sender_email
