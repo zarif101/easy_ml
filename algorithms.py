@@ -27,6 +27,7 @@ def logistic_regression_algo(X_train,X_test,y_train,y_test):
     return model
 
 def random_forest_algo(X_train,X_test,y_train,y_test):
+    st.write(y_train)
     ##print('forest time baby')
     rfc = RandomForestClassifier(n_estimators=100)
     sys.stdout(y_train)
