@@ -155,6 +155,7 @@ def get_data_arrays(thedata,X_col,y_col):
         X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.3)
         return X_train,X_test,y_train,y_test
     except Exception as e:
+        pass
         #print(e)
 
 # def logistic_regression_algo(X_train,X_test,y_train,y_test):
@@ -169,5 +170,6 @@ def get_data_arrays(thedata,X_col,y_col):
 #     matrix = confusion_matrix(y_test,preds)
 #     st.write('Confusion matrix: ',matrix)
 #     st.write('Classification report: ',report)
+
 
 main()
