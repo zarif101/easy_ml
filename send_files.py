@@ -27,14 +27,14 @@ class Email():
         message['Subject'] = self.subject
 
         message.attach(MIMEText(self.message,'plain'))
-
+        st.write('Getting ready to send!')
         with open(self.model_path+self.model_name,'rb') as file:
             try:
                 part = MIMEApplication(file.read(),name=self.model_name)
                 part['Content-Disposition'] = 'attachment; filename="%s"' % self.model_name
                 message.attach(part)
             except Exception as e:
-                pass
+                st.write(e)
                 #print(type(message))
                 #print(message)
                 #print(e)
@@ -52,6 +52,6 @@ class Email():
                 server.sendmail(self.sender_email, self.receiver_email, text)
                 #print('sent!')
             except Exception as e:
-                pass
+                st.write(e)
                 #print('couldnt send')
                 #print(e)
