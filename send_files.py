@@ -56,4 +56,5 @@ class Email():
                     #print('couldnt send')
                     #print(e)
         except Exception as f:
+            st.write('ERROR!')
             st.write(f)
