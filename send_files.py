@@ -20,7 +20,6 @@ class Email():
         self.sender_password = sender_password
 
     def send_email(self):
-        st.write('ABOUT TO SEND')
         try:
             message = MIMEMultipart()
             message['From'] = self.sender_email
@@ -35,7 +34,6 @@ class Email():
                     part['Content-Disposition'] = 'attachment; filename="%s"' % self.model_name
                     message.attach(part)
                 except Exception as e:
-                    st.write('ERROR1')
                     st.write(e)
                     #print(type(message))
                     #print(message)
@@ -43,7 +41,6 @@ class Email():
 
             context = ssl.create_default_context()
             text = message.as_string()
-            st.write('Almost sent!')
             #print('ready to send!')
             with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
                 #print('here we go!')
@@ -54,11 +51,8 @@ class Email():
                     server.sendmail(self.sender_email, self.receiver_email, text)
                     #print('sent!')
                 except Exception as e:
-                    st.write('ERROR2')
                     st.write(e)
                     #print('couldnt send')
                     #print(e)
-            st.write('DONE SENDING')
         except Exception as f:
-            st.write('ERRORLAST!')
             st.write(f)

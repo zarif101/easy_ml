@@ -72,23 +72,19 @@ def main():
                         receiver_email = st.text_input('Type in your email').rstrip().lstrip()
                         if '@' in receiver_email:
                             if st.button('Email me my model!'):
-                                st.write('HERE WE GO')
                                 sender_email = email_info.get_sender_email()
                                 sender_password = email_info.get_sender_password()
-                                st.write('GOT INFO')
                                 subject = 'Your Model!'
                                 message = 'Your model is attatched as a pickle file...'
                                 model_path = 'user_models/'
                                 model_name = 'send_model.pkl'
-                                st.write('Getting model')
                                 with open(model_path+model_name,'wb') as pick:
                                     pickle.dump(model,pick)
 
-                                st.write('Getting email')
+
                                 email = Email(sender_email,receiver_email,subject,message,model_name,model_path,sender_password)
-                                st.write('Sending email...')
+                                s
                                 email.send_email()
-                                st.write('EMAIL SENT')
 
                                 st.write('Your model has been emailed to you!')
                             else:
