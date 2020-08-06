@@ -83,8 +83,8 @@ def main():
 
 
                                 email = Email(sender_email,receiver_email,subject,message,model_name,model_path,sender_password)
-                                s
                                 email.send_email()
+
 
                                 st.write('Your model has been emailed to you!')
                             else:
