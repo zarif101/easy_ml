@@ -3,7 +3,7 @@
 This is a web app/website which you can use to apply basic machine learning algorithms such as SVMs and regression, to your data. It is not 100% finished yet, so bear with me here. I probably shouldn't be putting my email on the internet, but if you have any questions or suggestions please email me at zarif.azher@gmail.com. Please keep in mind that this is very much a work in progress and not everything works (yet).
 
 # Notes
-- I am currently working on making this into an 'official' website, so you can actually use it
+- Up and running here: https://stark-waters-72314.herokuapp.com/
 - I'm currently writing a comprehensive Medium article on the project, which will include usage. Link will be here once it's up!
 - If you are going to attempt to clone this and create the platform for yourself, you have to create a new file in the main directory called 'email_info.py'. It must specify your email address and password (currently only support Gmail, unless you configure 'send_files.py')...see the example below
 ```shell
