@@ -16,6 +16,7 @@ def get_sender_email():
 def get_sender_password():
     return sender_password
 ```
+- You'll also have to create a folder in the main directory called 'user_models'
 - Additionally, if you attempt this custom usage, make sure to allow 'less secure' apps in your Gmail: https://hotter.io/docs/email-accounts/secure-app-gmail/
 - The web app is made with a great framework built for Python data scientists and machine learning engineers, called Streamlit.
 - It asks for your email only to send you your model, in the form of a Python pickle. I'm NOT storing your email anywhere or using it to send you spam mail.
