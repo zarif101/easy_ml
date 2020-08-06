@@ -33,7 +33,6 @@ def random_forest_algo(X_train,X_test,y_train,y_test):
     try:
         rfc.fit(X_train,y_train)
     except Exception as e:
-        st.write(e)
         print(e)
         sys.stdout.flush()
     preds = rfc.predict(X_test)
